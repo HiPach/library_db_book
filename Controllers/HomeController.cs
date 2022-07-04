@@ -3,6 +3,7 @@ using library_db_book.Models.Class_Book;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using AutoMapper;
+using library_db_book.Controllers.Dto;
 
 namespace library_db_book.Controllers
 {
@@ -34,10 +35,9 @@ namespace library_db_book.Controllers
 		// и т.п.
 		
 
-		private object dbContext;
-        private object _mapper;
-        private object? outDtos;
-        private object? entity;
+		private dbContext = new dbContext;
+        private readonly IMapper _mapper;
+        private object outDtos;
 
         [HttpGet]
 		public async Task<ActionResult<IList<OutBookDto>>> GetAllAsync()
@@ -45,18 +45,18 @@ namespace library_db_book.Controllers
 			var entities = await dbContext.Set<Book>().Where(x => !x.IsDeleted).ToListAsync();
 			//мапишь ентити в outDto
 			var book = _mapper.Map<Book>(outDtos);
-			outDtos = entity; //mapping
+			outDtos = book; //mapping
 			return Ok(outDtos);
 		}
 
 		[HttpGet("{id}")]
 		public async Task<ActionResult<OutBookDto>> GetByIdAsync([FromRoute] TId id)
 		{
-			var entity = await dbContext.Set<Book>().Single(x => x.Id.Equals(id));
+			var entity = await DbContext.Set<Book>().Single(x => x.Id.Equals(id));
 			//мапишь ентити в outDto
-			var Book = _mapper.Map<Book>(outDto);
-			outDto = Book; //mapping
-			return Ok(outDto);
+			var book = _mapper.Map<Book>(outDtos);
+			outDtos = book; //mapping
+			return Ok(outDtos);
 		}
 
 		[HttpPost("[action]")]
@@ -65,12 +65,12 @@ namespace library_db_book.Controllers
 		{
 			//мапишь createDto в TEntity (пример, CreateBookDto в Book)
 			var createDto = _mapper.Map<CreateBookDto>(Book);
-			var entity = (await dbContext.Set<Book>().AddAsync(obj)).Entity;
-			await dbContext.SaveChangesAsync();
+			var entity = (await DbContext.Set<Book>().AddAsync(obj)).Entity;
+			await DbContext.SaveChangesAsync();
 			//мапишь ентити в outDto
-			var Book = _mapper.Map<Book>(OutBookDto);
-			outDto = Book; //mapping
-			return Created(Request.Path, outDto);
+			var Book = _mapper.Map<Book>(outDtos);
+			outDtos = Book; //mapping
+			return Created(Request.Path, outDtos);
 		}
 
 		[HttpPut("[action]/{id}")]
