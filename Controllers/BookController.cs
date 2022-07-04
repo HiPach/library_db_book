@@ -67,7 +67,7 @@ namespace library_db_book.Controllers
 		public async Task<ActionResult<OutBookDto>> CreateAsync([FromBody] CreateBookDto createDto)
 		{
 			//мапишь createDto в TEntity (пример, CreateBookDto в Book)
-			var CreateBookDto = _mapper.Map<CreateBookDto>(Request.Path);
+			var createbookDto = _mapper.Map<CreateBookDto>(createDto);
 			var entity = (await dbContext.Set<Book>().AddAsync(obj)).Entity;
 			await dbContext.SaveChangesAsync();
 			//мапишь ентити в outDto
@@ -79,13 +79,13 @@ namespace library_db_book.Controllers
 		[HttpPut("[action]/{id}")]
 		[Consumes("application/json")]
 		public async Task<ActionResult<OutBookDto>> UpdateAsync(
-				[FromRoute] TId id,
+				[FromRoute] int id,
 				[FromBody] UpdateBookDto updateDto
 			)
 		{
 
 			//мапишь updateDto в TEntity (пример, UpdateBookDto в Book)
-			var UpdateBookDto = _mapper.Map<UpdateBookDto>(Book);
+			var updatebookDto = _mapper.Map<UpdateBookDto>(updateDto);
 			var outDto = dbContext.Set<Book>().Update(obj).Entity;
 			await dbContext.SaveChangesAsync();
 			//также мапишь в outDto
@@ -95,9 +95,9 @@ namespace library_db_book.Controllers
 		}
 
 		[HttpDelete("[action]/{id}")]
-		public async Task<ActionResult> DeleteAsync([FromRoute] TId id)
+		public async Task<ActionResult> RemoveAsync([FromRoute] int id)
 		{
-			await dbContext.Set<Book>().Delete(id); //или Remove, точно не помню;
+			await dbContext.Set<Book>().Remove(x => x.Id.Equals(id)); //или Remove, точно не помню;
 		return Ok();
 		}
 	}
