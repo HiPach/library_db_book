@@ -5,5 +5,6 @@
   </PropertyGroup>
   <PropertyGroup>
     <ActiveDebugProfile>library_db_book</ActiveDebugProfile>
+    <NameOfLastUsedPublishProfile>D:\Visual Studio\library_db_book\Properties\PublishProfiles\FolderProfile.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>

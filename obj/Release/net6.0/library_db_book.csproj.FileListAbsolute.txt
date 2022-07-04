@@ -1,0 +1,8 @@
+D:\Visual Studio\library_db_book\obj\Release\net6.0\library_db_book.csproj.AssemblyReference.cache
+D:\Visual Studio\library_db_book\obj\Release\net6.0\library_db_book.GeneratedMSBuildEditorConfig.editorconfig
+D:\Visual Studio\library_db_book\obj\Release\net6.0\library_db_book.AssemblyInfoInputs.cache
+D:\Visual Studio\library_db_book\obj\Release\net6.0\library_db_book.AssemblyInfo.cs
+D:\Visual Studio\library_db_book\obj\Release\net6.0\library_db_book.csproj.CoreCompileInputs.cache
+D:\Visual Studio\library_db_book\obj\Release\net6.0\library_db_book.MvcApplicationPartsAssemblyInfo.cache
+D:\Visual Studio\library_db_book\obj\Release\net6.0\library_db_book.RazorAssemblyInfo.cache
+D:\Visual Studio\library_db_book\obj\Release\net6.0\library_db_book.RazorAssemblyInfo.cs
