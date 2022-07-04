@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using AutoMapper;
 using library_db_book.Controllers.Dto;
+using MySQLApp;
+using Microsoft.EntityFrameworkCore;
 
 namespace library_db_book.Controllers
 {
@@ -35,7 +37,7 @@ namespace library_db_book.Controllers
 		// и т.п.
 		
 
-		private dbContext = new dbContext;
+		private Context dbContext;
         private readonly IMapper _mapper;
         private object outDtos;
 
@@ -52,7 +54,7 @@ namespace library_db_book.Controllers
 		[HttpGet("{id}")]
 		public async Task<ActionResult<OutBookDto>> GetByIdAsync([FromRoute] TId id)
 		{
-			var entity = await DbContext.Set<Book>().Single(x => x.Id.Equals(id));
+			var entity = await dbContext.Set<Book>().Single(x => x.Id.Equals(id));
 			//мапишь ентити в outDto
 			var book = _mapper.Map<Book>(outDtos);
 			outDtos = book; //mapping

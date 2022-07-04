@@ -9,6 +9,7 @@
         public string Category { get; set; }
         public string Mark { get; set; }
         public string Shelf { get; set; }
+        public bool IsDeleted { get; internal set; }
     }
 }
 
