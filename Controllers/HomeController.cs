@@ -63,32 +63,32 @@ namespace library_db_book.Controllers
 
 		[HttpPost("[action]")]
 		[Consumes("application/json")]
-		public async Task<ActionResult<OutBookDto>> CreateAsync([FromBody] TCreateDto createDto)
+		public async Task<ActionResult<OutBookDto>> CreateAsync([FromBody] CreateBookDto createDto)
 		{
 			//мапишь createDto в TEntity (пример, CreateBookDto в Book)
-			var createDto = _mapper.Map<CreateBookDto>(Book);
-			var entity = (await DbContext.Set<Book>().AddAsync(obj)).Entity;
-			await DbContext.SaveChangesAsync();
+			var CreateBookDto = _mapper.Map<CreateBookDto>(Request.Path);
+			var entity = (await dbContext.Set<Book>().AddAsync(obj)).Entity;
+			await dbContext.SaveChangesAsync();
 			//мапишь ентити в outDto
-			var Book = _mapper.Map<Book>(outDtos);
-			outDtos = Book; //mapping
+			var book = _mapper.Map<Book>(outDtos);
+			outDtos = book; //mapping
 			return Created(Request.Path, outDtos);
 		}
 
 		[HttpPut("[action]/{id}")]
 		[Consumes("application/json")]
-		public async Task<ActionResult<TOutDto>> UpdateAsync(
+		public async Task<ActionResult<OutBookDto>> UpdateAsync(
 				[FromRoute] TId id,
-				[FromBody] TUpdateDto updateDto
+				[FromBody] UpdateBookDto updateDto
 			)
 		{
 			//мапишь updateDto в TEntity (пример, UpdateBookDto в Book)
-			var updateDto = _mapper.Map<UpdateBookDto>(Book);
+			var UpdateBookDto = _mapper.Map<UpdateBookDto>(Book);
 			var outDto = dbContext.Set<Book>().Update(obj).Entity;
 			await dbContext.SaveChangesAsync();
 			//также мапишь в outDto
-			var Book = _mapper.Map<Book>(OutBookDto);
-			outDto = updateDto; //mapping
+			var book = _mapper.Map<Book>(outDto);
+			outDto = book; //mapping
 			return Ok(outDto);
 		}
 
