@@ -1,6 +1,8 @@
 ﻿using library_db_book.Models;
+using library_db_book.Models.Class_Book;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using AutoMapper;
 
 namespace library_db_book.Controllers
 {
@@ -8,6 +10,7 @@ namespace library_db_book.Controllers
     {
 
         private readonly ILogger<HomeController> _logger;
+       
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -24,23 +27,30 @@ namespace library_db_book.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
 		//TEntity - класс твоей сущности (пример, Book)
 		//TOutDto - dto для вывода
 		//TCreateDto - dto для создания новой записи
 		// и т.п.
+		
 
-		[HttpGet]
-		public async Task<ActionResult<IList<TOutDtos>>> GetAllAsync()
+		private object dbContext;
+        private object _mapper;
+        private object? outDtos;
+        private object? entity;
+
+        [HttpGet]
+		public async Task<ActionResult<IList<OutBookDto>>> GetAllAsync()
 		{
 			var entities = await dbContext.Set<Book>().Where(x => !x.IsDeleted).ToListAsync();
 			//мапишь ентити в outDto
-			var Book = _mapper.Map<Book>(TOutDto);
-			outDtos = Book; //mapping
+			var book = _mapper.Map<Book>(outDtos);
+			outDtos = entity; //mapping
 			return Ok(outDtos);
 		}
 
 		[HttpGet("{id}")]
-		public async Task<ActionResult<TOutDto>> GetByIdAsync([FromRoute] TId id)
+		public async Task<ActionResult<OutBookDto>> GetByIdAsync([FromRoute] TId id)
 		{
 			var entity = await dbContext.Set<Book>().Single(x => x.Id.Equals(id));
 			//мапишь ентити в outDto
@@ -51,14 +61,14 @@ namespace library_db_book.Controllers
 
 		[HttpPost("[action]")]
 		[Consumes("application/json")]
-		public async Task<ActionResult<TOutDto>> CreateAsync([FromBody] TCreateDto createDto)
+		public async Task<ActionResult<OutBookDto>> CreateAsync([FromBody] TCreateDto createDto)
 		{
 			//мапишь createDto в TEntity (пример, CreateBookDto в Book)
-			var createDto = _mapper.Map<createDto>(Book);
+			var createDto = _mapper.Map<CreateBookDto>(Book);
 			var entity = (await dbContext.Set<Book>().AddAsync(obj)).Entity;
 			await dbContext.SaveChangesAsync();
 			//мапишь ентити в outDto
-			var Book = _mapper.Map<Book>(TOutDto);
+			var Book = _mapper.Map<Book>(OutBookDto);
 			outDto = Book; //mapping
 			return Created(Request.Path, outDto);
 		}
@@ -71,11 +81,11 @@ namespace library_db_book.Controllers
 			)
 		{
 			//мапишь updateDto в TEntity (пример, UpdateBookDto в Book)
-			var updateDto = _mapper.Map<updateDto>(Book);
+			var updateDto = _mapper.Map<UpdateBookDto>(Book);
 			var outDto = dbContext.Set<Book>().Update(obj).Entity;
 			await dbContext.SaveChangesAsync();
 			//также мапишь в outDto
-			var Book = _mapper.Map<Book>(TOutDto);
+			var Book = _mapper.Map<Book>(OutBookDto);
 			outDto = updateDto; //mapping
 			return Ok(outDto);
 		}
@@ -83,7 +93,7 @@ namespace library_db_book.Controllers
 		[HttpDelete("[action]/{id}")]
 		public async Task<ActionResult> DeleteAsync([FromRoute] TId id)
 		{
-			await dbContext.Set<Book>().Delete(id)//или Remove, точно не помню;
+			await dbContext.Set<Book>().Delete(id); //или Remove, точно не помню;
 		return Ok();
 		}
 	}

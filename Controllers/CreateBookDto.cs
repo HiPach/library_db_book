@@ -1,6 +1,6 @@
 ﻿namespace library_db_book.Controllers
 {
-    public class Read
+    internal class CreateBookDto
     {
     }
 }

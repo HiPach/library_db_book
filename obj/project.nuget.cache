@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "IWC+zWD5bGej+rq3rl0mWnFwiVEBRCNPXjNRdaTrJmRQNFFYqJKNrn57T6aLG1QdnMztptUBr/lnlHskDSEqwQ==",
+  "dgSpecHash": "ZFllhlSf68kaa4WSJDR5jV4xq09+rsPY73Tpt+QwJ4a0oVwvDo7GlES8GSvP6nEqFr9ypkW2rev+QubA6OvdNg==",
   "success": true,
   "projectFilePath": "D:\\Visual Studio\\library_db_book\\library_db_book.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Leader\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
+    "C:\\Users\\Leader\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
     "C:\\Users\\Leader\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Leader\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.1\\microsoft.entityframeworkcore.6.0.1.nupkg.sha512",
     "C:\\Users\\Leader\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.1\\microsoft.entityframeworkcore.abstractions.6.0.1.nupkg.sha512",
