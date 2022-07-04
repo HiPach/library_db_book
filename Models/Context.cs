@@ -21,7 +21,7 @@ namespace MySQLApp
         {
             optionsBuilder.UseMySql(
                 "server=localhost;user=HiPachSQL;password=oKh9FrO8Tp;database=library_db;",
-                new MySqlServerVersion(new Version(8, 0, 11))
+                new MySqlServerVersion(new Version(8, 0, 29))
             );
         }
 	}

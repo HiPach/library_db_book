@@ -9,13 +9,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace library_db_book.Controllers
 {
-    public class HomeController : Controller
+    public class BookController : Controller
     {
 
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<BookController> _logger;
        
 
-        public HomeController(ILogger<HomeController> logger)
+        public BookController(ILogger<BookController> logger)
         {
             _logger = logger;
         }
@@ -40,6 +40,7 @@ namespace library_db_book.Controllers
 		private Context dbContext;
         private readonly IMapper _mapper;
         private object outDtos;
+        private Book obj;
 
         [HttpGet]
 		public async Task<ActionResult<IList<OutBookDto>>> GetAllAsync()
@@ -54,7 +55,7 @@ namespace library_db_book.Controllers
 		[HttpGet("{id}")]
 		public async Task<ActionResult<OutBookDto>> GetByIdAsync([FromRoute] TId id)
 		{
-			var entity = await dbContext.Set<Book>().Single(x => x.Id.Equals(id));
+			var entity = await dbContext.Set<Book>().SingleAsync(x => x.Id.Equals(id));
 			//мапишь ентити в outDto
 			var book = _mapper.Map<Book>(outDtos);
 			outDtos = book; //mapping
@@ -82,6 +83,7 @@ namespace library_db_book.Controllers
 				[FromBody] UpdateBookDto updateDto
 			)
 		{
+
 			//мапишь updateDto в TEntity (пример, UpdateBookDto в Book)
 			var UpdateBookDto = _mapper.Map<UpdateBookDto>(Book);
 			var outDto = dbContext.Set<Book>().Update(obj).Entity;

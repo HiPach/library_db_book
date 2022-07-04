@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace library_db_book.Controllers
+namespace library_db_book
 {
     public class Create : Controller
     {
