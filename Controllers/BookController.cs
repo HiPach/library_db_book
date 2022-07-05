@@ -39,16 +39,15 @@ namespace library_db_book.Controllers
 
 		private Context dbContext;
         private readonly IMapper _mapper;
-        private object outDtos;
-        private Book obj;
+
 
         [HttpGet]
 		public async Task<ActionResult<IList<OutBookDto>>> GetAllAsync()
 		{
-			var entities = await dbContext.Set<Book>().Where(x => !x.IsDeleted).ToListAsync();
+			var entities = await dbContext.Set<Book>().Select(x => !x.IsDeleted).ToListAsync();
 			//мапишь ентити в outDto
-			var book = _mapper.Map<Book>(outDtos);
-			outDtos = book; //mapping
+			var outDtos = _mapper.Map<Book>(entities);
+			outDtos = entities; //mapping
 			return Ok(outDtos);
 		}
 
@@ -57,8 +56,8 @@ namespace library_db_book.Controllers
 		{
 			var entity = await dbContext.Set<Book>().SingleAsync(x => x.Id.Equals(id));
 			//мапишь ентити в outDto
-			var book = _mapper.Map<Book>(outDtos);
-			outDtos = book; //mapping
+			var outDtos = _mapper.Map<Book>(entity);
+			outDtos = entity; //mapping
 			return Ok(outDtos);
 		}
 
@@ -71,8 +70,8 @@ namespace library_db_book.Controllers
 			var entity = (await dbContext.Set<Book>().AddAsync(obj)).Entity;
 			await dbContext.SaveChangesAsync();
 			//мапишь ентити в outDto
-			var book = _mapper.Map<Book>(outDtos);
-			outDtos = book; //mapping
+			var outDtos = _mapper.Map<Book>(entity);
+			outDtos = entity; //mapping
 			return Created(Request.Path, outDtos);
 		}
 
@@ -86,18 +85,19 @@ namespace library_db_book.Controllers
 
 			//мапишь updateDto в TEntity (пример, UpdateBookDto в Book)
 			var updatebookDto = _mapper.Map<UpdateBookDto>(updateDto);
-			var outDto = dbContext.Set<Book>().Update(obj).Entity;
+			var entity = dbContext.Set<Book>().Update(entity).Entity;
 			await dbContext.SaveChangesAsync();
 			//также мапишь в outDto
-			var book = _mapper.Map<Book>(outDto);
-			outDto = book; //mapping
+			var outDto = _mapper.Map<Book>(entity);
+			outDto = entity; //mapping
 			return Ok(outDto);
 		}
 
 		[HttpDelete("[action]/{id}")]
 		public async Task<ActionResult> RemoveAsync([FromRoute] int id)
 		{
-			await dbContext.Set<Book>().SingleAsync(x => x.Id.Equals(id)); //или Remove, точно не помню;
+			var entity = await dbContext.Set<Book>().SingleAsync(x => x.Id.Equals(id));//или Remove, точно не помню;
+			var outDto = dbContext.Set<Book>().Remove(entity).Entity;
 		return Ok();
 		}
 	}
