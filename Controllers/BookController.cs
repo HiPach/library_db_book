@@ -97,7 +97,7 @@ namespace library_db_book.Controllers
 		[HttpDelete("[action]/{id}")]
 		public async Task<ActionResult> RemoveAsync([FromRoute] int id)
 		{
-			await dbContext.Set<Book>().Remove(x => x.Id.Equals(id)); //или Remove, точно не помню;
+			await dbContext.Set<Book>().SingleAsync(x => x.Id.Equals(id)); //или Remove, точно не помню;
 		return Ok();
 		}
 	}
