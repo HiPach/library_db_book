@@ -46,8 +46,7 @@ namespace library_db_book.Controllers
 		{
 			var entities = await dbContext.Set<Book>().Select(x => !x.IsDeleted).ToListAsync();
 			//мапишь ентити в outDto
-			var outDtos = _mapper.Map<Book>(entities);
-			outDtos = entities; //mapping
+			var outDtos = _mapper.Map<List<OutBookDto>>(entities);
 			return Ok(outDtos);
 		}
 
@@ -57,7 +56,6 @@ namespace library_db_book.Controllers
 			var entity = await dbContext.Set<Book>().SingleAsync(x => x.Id.Equals(id));
 			//мапишь ентити в outDto
 			var outDtos = _mapper.Map<Book>(entity);
-			outDtos = entity; //mapping
 			return Ok(outDtos);
 		}
 
@@ -66,12 +64,11 @@ namespace library_db_book.Controllers
 		public async Task<ActionResult<OutBookDto>> CreateAsync([FromBody] CreateBookDto createDto)
 		{
 			//мапишь createDto в TEntity (пример, CreateBookDto в Book)
-			var createbookDto = _mapper.Map<CreateBookDto>(createDto);
-			var entity = (await dbContext.Set<Book>().AddAsync(obj)).Entity;
+			var createbookDto = _mapper.Map<Book>(createDto);
+			var entity = (await dbContext.Set<Book>().AddAsync(createbookDto)).Entity;
 			await dbContext.SaveChangesAsync();
 			//мапишь ентити в outDto
 			var outDtos = _mapper.Map<Book>(entity);
-			outDtos = entity; //mapping
 			return Created(Request.Path, outDtos);
 		}
 
@@ -84,12 +81,11 @@ namespace library_db_book.Controllers
 		{
 
 			//мапишь updateDto в TEntity (пример, UpdateBookDto в Book)
-			var updatebookDto = _mapper.Map<UpdateBookDto>(updateDto);
-			var entity = dbContext.Set<Book>().Update(entity).Entity;
+			var updatebookDto = _mapper.Map<Book>(updateDto);
+			var entity = dbContext.Set<Book>().Update(updatebookDto).Entity;
 			await dbContext.SaveChangesAsync();
 			//также мапишь в outDto
 			var outDto = _mapper.Map<Book>(entity);
-			outDto = entity; //mapping
 			return Ok(outDto);
 		}
 
