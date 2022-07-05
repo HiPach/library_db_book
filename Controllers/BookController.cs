@@ -51,7 +51,7 @@ namespace library_db_book.Controllers
 		}
 
 		[HttpGet("{id}")]
-		public async Task<ActionResult<OutBookDto>> GetByIdAsync([FromRoute] TId id)
+		public async Task<ActionResult<OutBookDto>> GetByIdAsync([FromRoute] int id)
 		{
 			var entity = await dbContext.Set<Book>().SingleAsync(x => x.Id.Equals(id));
 			//мапишь ентити в outDto
