@@ -12,7 +12,8 @@ namespace library_db_book.Controllers
     public class BookController : Controller
     {
 
-        private readonly ILogger<BookController> _logger;
+
+		private readonly ILogger<BookController> _logger;
        
 
         public BookController(ILogger<BookController> logger)
@@ -79,7 +80,6 @@ namespace library_db_book.Controllers
 				[FromBody] UpdateBookDto updateDto
 			)
 		{
-
 			//мапишь updateDto в TEntity (пример, UpdateBookDto в Book)
 			var updatebookDto = _mapper.Map<Book>(updateDto);
 			var entity = dbContext.Set<Book>().Update(updatebookDto).Entity;
