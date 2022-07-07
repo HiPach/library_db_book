@@ -1,4 +1,5 @@
-﻿namespace library_db_book.Controllers.Dto
+﻿
+namespace library_db_book.Controllers.Dto
 {
     public class CreateBookDto
     {

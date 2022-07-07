@@ -12,7 +12,6 @@ namespace MySQLApp
         public DbSet<Category> Category { get; set; }
         public DbSet<Mark> Mark { get; set; }
         public DbSet<Shelf> Shelf { get; set; }
-
         public Context()
         {
             Database.EnsureCreated();

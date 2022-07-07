@@ -6,42 +6,36 @@ using AutoMapper;
 using library_db_book.Controllers.Dto;
 using MySQLApp;
 using Microsoft.EntityFrameworkCore;
-
 namespace library_db_book.Controllers
 {
     public class BookController : Controller
     {
-
-
-		private readonly ILogger<BookController> _logger;
-       
-
-        public BookController(ILogger<BookController> logger)
+		public class EmployeesController
+		{
+			private readonly IMapper _mapper;
+			public EmployeesController(IMapper mapper) => _mapper = mapper;
+			// use _mapper.Map or _mapper.ProjectTo
+		}
+		Context dbContext = new Context();
+		private readonly ILogger<Book> _logger;
+        public BookController(ILogger<Book> logger)
         {
             _logger = logger;
         }
-
         public IActionResult Index()
         {
             return View();
         }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
 		//TEntity - класс твоей сущности (пример, Book)
 		//TOutDto - dto для вывода
 		//TCreateDto - dto для создания новой записи
 		// и т.п.
-		
-
-		private Context dbContext;
         private readonly IMapper _mapper;
-
-
         [HttpGet]
 		public async Task<ActionResult<IList<OutBookDto>>> GetAllAsync()
 		{
@@ -50,7 +44,6 @@ namespace library_db_book.Controllers
 			var outDtos = _mapper.Map<List<OutBookDto>>(entities);
 			return Ok(outDtos);
 		}
-
 		[HttpGet("{id}")]
 		public async Task<ActionResult<OutBookDto>> GetByIdAsync([FromRoute] int id)
 		{
@@ -59,7 +52,6 @@ namespace library_db_book.Controllers
 			var outDtos = _mapper.Map<Book>(entity);
 			return Ok(outDtos);
 		}
-
 		[HttpPost("[action]")]
 		[Consumes("application/json")]
 		public async Task<ActionResult<OutBookDto>> CreateAsync([FromBody] CreateBookDto createDto)
@@ -72,13 +64,11 @@ namespace library_db_book.Controllers
 			var outDtos = _mapper.Map<Book>(entity);
 			return Created(Request.Path, outDtos);
 		}
-
 		[HttpPut("[action]/{id}")]
 		[Consumes("application/json")]
 		public async Task<ActionResult<OutBookDto>> UpdateAsync(
 				[FromRoute] int id,
-				[FromBody] UpdateBookDto updateDto
-			)
+				[FromBody] UpdateBookDto updateDto)
 		{
 			//мапишь updateDto в TEntity (пример, UpdateBookDto в Book)
 			var updatebookDto = _mapper.Map<Book>(updateDto);
@@ -88,7 +78,6 @@ namespace library_db_book.Controllers
 			var outDto = _mapper.Map<Book>(entity);
 			return Ok(outDto);
 		}
-
 		[HttpDelete("[action]/{id}")]
 		public async Task<ActionResult> RemoveAsync([FromRoute] int id)
 		{
