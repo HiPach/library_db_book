@@ -7,6 +7,7 @@
         public string First_Name { get; set; }
         public string Middle_Name { get; set; }
         public string Last_Name { get; set; }
+        public string Book_List { get; set; }
         public DateTime Date_Registration { get; set; }
     }
 }

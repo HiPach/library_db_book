@@ -9,7 +9,10 @@
         public string Category { get; set; }
         public string Mark { get; set; }
         public string Shelf { get; set; }
-        public bool IsDeleted { get; internal set; }
+        public string Reader_List { get; set; }
+        public string Mark_List { get; set; }
+        public string Category_List { get; set; }
+        public string Shelf_List { get; set; }
     }
 }
 

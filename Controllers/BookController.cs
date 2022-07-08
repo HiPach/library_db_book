@@ -8,19 +8,15 @@ using MySQLApp;
 using Microsoft.EntityFrameworkCore;
 namespace library_db_book.Controllers
 {
-    public class BookController : Controller
-    {
-		public class EmployeesController
-		{
-			private readonly IMapper _mapper;
-			public EmployeesController(IMapper mapper) => _mapper = mapper;
-			// use _mapper.Map or _mapper.ProjectTo
-		}
+	public class BookController : Controller
+	{
 		Context dbContext = new Context();
-		private readonly ILogger<Book> _logger;
-        public BookController(ILogger<Book> logger)
+		private readonly ILogger<BookController> _logger;
+		private readonly IMapper _mapper;
+		public BookController(ILogger<BookController> logger, IMapper mapper)
         {
             _logger = logger;
+            _mapper = mapper;
         }
         public IActionResult Index()
         {
@@ -35,7 +31,6 @@ namespace library_db_book.Controllers
 		//TOutDto - dto для вывода
 		//TCreateDto - dto для создания новой записи
 		// и т.п.
-        private readonly IMapper _mapper;
         [HttpGet]
 		public async Task<ActionResult<IList<OutBookDto>>> GetAllAsync()
 		{

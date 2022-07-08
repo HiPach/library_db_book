@@ -4,5 +4,6 @@
     {
         public int Id { get; set; }
         public string Title_Mark { get; set; }
+        public string Book_List { get; set; }
     }
 }
