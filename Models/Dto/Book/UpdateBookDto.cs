@@ -7,6 +7,6 @@
         public int ReaderId { get; set; }
         public int[] CategoryIds { get; set; }
         public int[] MarkIds { get; set; }
-        public string Shelf { get; set; }
+        public int ShelfId { get; set; }
     }
 }
