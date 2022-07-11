@@ -7,6 +7,6 @@ namespace library_db_book.Models.Class_Book
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Title { get; set; }
-        public IList<BookCategoryRelation> Categories { get; set; }
+        public IList<BookCategoryRelation> BookCategory { get; set; }
     }
 }

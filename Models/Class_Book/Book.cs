@@ -12,8 +12,8 @@ namespace library_db_book.Models.Class_Book
         public string Mark { get; set; }
         public Reader Reader { get; set; }
         public Shelf Shelf { get; set; }
-        public IList<BookMarkRelation> Marks { get; set; }
-        public IList<BookCategoryRelation> Categories { get; set; }
+        public IList<BookMarkRelation> BookMark { get; set; }
+        public IList<BookCategoryRelation> BookCategory { get; set; }
     }
 }
 
