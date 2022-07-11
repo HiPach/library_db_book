@@ -3,12 +3,15 @@ using library_db_book.Models.Class_Book;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using AutoMapper;
-using library_db_book.Controllers.Dto;
 using MySQLApp;
 using Microsoft.EntityFrameworkCore;
+using library_db_book.Models.Dto.UpdateOutDto;
+using library_db_book.Models.Dto.CreateOutDto;
+using library_db_book.Models.Dto.BookOutDto;
+
 namespace library_db_book.Controllers
 {
-	public class BookController : Controller
+    public class BookController : Controller
 	{
 		Context dbContext = new Context();
 		private readonly ILogger<BookController> _logger;

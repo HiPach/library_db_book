@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
-using library_db_book.Controllers.Dto;
 using library_db_book.Models.Class_Book;
+using library_db_book.Models.Dto.BookOutDto;
+using library_db_book.Models.Dto.CreateOutDto;
+using library_db_book.Models.Dto.UpdateOutDto;
 
 namespace library_db_book.Controllers.Map
 {
