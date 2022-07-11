@@ -1,6 +1,7 @@
-﻿using library_db_book.Models.Dto.Dto_other;
+﻿using library_db_book.Models.Dto.Reader;
+using library_db_book.Models.Dto.Shelf;
 
-namespace library_db_book.Models.Dto
+namespace library_db_book.Models.Dto.Book
 {
     public class BookOutDto
     {
