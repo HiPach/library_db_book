@@ -1,6 +1,6 @@
 ﻿using library_db_book.Models.Class_Book;
 
-namespace library_db_book.Models.Dto.CreateOutDto
+namespace library_db_book.Models.Dto
 {
     public class CreateBookDto
     {

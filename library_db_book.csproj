@@ -16,4 +16,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.3.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\Dto\Book\Remove\" />
+    <Folder Include="Models\Dto\Book\Update\" />
+    <Folder Include="Models\Dto\Book\Create\" />
+  </ItemGroup>
+
 </Project>

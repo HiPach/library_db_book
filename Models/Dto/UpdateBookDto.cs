@@ -1,4 +1,4 @@
-﻿namespace library_db_book.Models.Dto.UpdateOutDto
+﻿namespace library_db_book.Models.Dto
 {
     public class UpdateBookDto
     {

@@ -5,9 +5,7 @@ using System.Diagnostics;
 using AutoMapper;
 using MySQLApp;
 using Microsoft.EntityFrameworkCore;
-using library_db_book.Models.Dto.UpdateOutDto;
-using library_db_book.Models.Dto.CreateOutDto;
-using library_db_book.Models.Dto.BookOutDto;
+using library_db_book.Models.Dto;
 
 namespace library_db_book.Controllers
 {

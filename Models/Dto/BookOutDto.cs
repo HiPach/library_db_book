@@ -1,6 +1,6 @@
 ﻿using library_db_book.Models.Dto.Dto_other;
 
-namespace library_db_book.Models.Dto.BookOutDto
+namespace library_db_book.Models.Dto
 {
     public class BookOutDto
     {
