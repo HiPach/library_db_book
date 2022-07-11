@@ -3,7 +3,7 @@
     public class Mark
     {
         public int Id { get; set; }
-        public string Title_Mark { get; set; }
-        public string Book_List { get; set; }
+        public string TitleMark { get; set; }
+        public IList<BookMarkRelation> Marks { get; set; }
     }
 }

@@ -4,6 +4,6 @@
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public string Book_List { get; set; }
+        public IList<BookCategoryRelation> Categories { get; set; }
     }
 }

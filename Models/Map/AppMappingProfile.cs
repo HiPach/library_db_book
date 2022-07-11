@@ -10,7 +10,7 @@ namespace library_db_book.Controllers.Map
         {
             CreateMap<CreateBookDto, Book>().ReverseMap();
             CreateMap<UpdateBookDto, Book>().ReverseMap();
-            CreateMap<OutBookDto, Book>().ReverseMap();
+            CreateMap<BookOutDto, Book>().ReverseMap();
         }
     }
 }

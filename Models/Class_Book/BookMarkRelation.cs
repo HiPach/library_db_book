@@ -4,7 +4,6 @@
     {
         public int Id { get; set; }
         public int Book_Id { get; set; }
-        public int Mark_Id { get; set; }
-
+        public int MarkList { get; set; }
     }
 }

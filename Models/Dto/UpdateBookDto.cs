@@ -2,7 +2,11 @@
 {
     public class UpdateBookDto
     {
-        public int Id { get; set; }
-        public string Title { get; set; }
+        public string Author { get; set; }
+        public string Photo { get; set; }
+        public int ReaderId { get; set; }
+        public int[] CategoryIds { get; set; }
+        public int[] MarkIds { get; set; }
+        public string Shelf { get; set; }
     }
 }

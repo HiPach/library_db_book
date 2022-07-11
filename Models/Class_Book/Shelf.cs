@@ -3,7 +3,7 @@
     public class Shelf
     {
         public int Id { get; set; }
-        public string Number_Shelf { get; set; }
-        public string Book_List { get; set; }
+        public string NumberShelf { get; set; }
+        public IList<Book> Shelfs { get; set; }
     }
 }

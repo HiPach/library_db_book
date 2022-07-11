@@ -3,11 +3,11 @@
     public class Reader
     {
         public int Id { get; set; }
-        public DateTime Date_Visit { get; set; }
-        public string First_Name { get; set; }
-        public string Middle_Name { get; set; }
-        public string Last_Name { get; set; }
-        public string Book_List { get; set; }
-        public DateTime Date_Registration { get; set; }
+        public DateTime DateVisit { get; set; }
+        public string FirstName { get; set; }
+        public string MiddleName { get; set; }
+        public string LastName { get; set; }
+        public string BookList { get; set; }
+        public DateTime DateRegistration { get; set; }
     }
 }
