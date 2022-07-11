@@ -1,4 +1,6 @@
-﻿using library_db_book.Models.Dto.Reader;
+﻿using library_db_book.Models.Dto.Category;
+using library_db_book.Models.Dto.Mark;
+using library_db_book.Models.Dto.Reader;
 using library_db_book.Models.Dto.Shelf;
 
 namespace library_db_book.Models.Dto.Book
