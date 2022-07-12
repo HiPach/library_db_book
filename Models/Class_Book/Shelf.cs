@@ -5,8 +5,8 @@ namespace library_db_book.Models.Class_Book
     public class Shelf
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public IList<Book> Books { get; set; }
+        virtual public int Id { get; set; }
+        virtual public string Name { get; set; }
+        virtual public IList<Book> Books { get; set; }
     }
 }

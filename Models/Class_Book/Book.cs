@@ -2,17 +2,17 @@
 
 namespace library_db_book.Models.Class_Book
 {
-    [Table("Table_Library")]
+    [Table("Book")]
     public class Book
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-        public string Author { get; set; }
-        public string Photo { get; set; }
-        public Reader Reader { get; set; }
-        public Shelf Shelf { get; set; }
-        public IList<BookMarkRelation> BookMark { get; set; }
-        public IList<BookCategoryRelation> BookCategory { get; set; }
+        virtual public int Id { get; set; }
+        virtual public string Author { get; set; }
+        virtual public string Photo { get; set; }
+        virtual public Reader Reader { get; set; }
+        virtual public Shelf Shelf { get; set; }
+        virtual public IList<BookMarkRelation> BookMark { get; set; }
+        virtual public IList<BookCategoryRelation> BookCategory { get; set; }
     }
 }
 
