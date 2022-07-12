@@ -22,7 +22,7 @@ namespace library_db_book.Controllers
         public async Task<ActionResult<ShelfOutDto>> GetByIdAsync([FromRoute] int id)
         {
             var entity = await dbContext.Set<Shelf>().SingleAsync(x => x.Id.Equals(id));
-            var outDtos = _mapper.Map<List<RShelfOutDto>>(entity);
+            var outDtos = _mapper.Map<List<ShelfOutDto>>(entity);
             return Ok(outDtos);
         }
         // --------------------------------------------------------GetAllAsync--------------------------------------------------------------------------- //
