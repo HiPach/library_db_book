@@ -7,7 +7,7 @@ namespace library_db_book.Models.Dto.Book
 {
     public class BookOutDto
     {
-        public string Title { get; set; }
+        public string Name { get; set; }
         public string Author { get; set; }
         public ShelfOutDto Shelf { get; set; }
         public ReaderOutDto Reader { get; set; }

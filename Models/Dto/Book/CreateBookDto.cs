@@ -9,5 +9,4 @@
         public int[] MarkIds { get; set; }
         public int ShelfId { get; set; }
     }
-    
 }
