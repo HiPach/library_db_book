@@ -46,8 +46,8 @@ namespace library_db_book.Controllers
 		[Consumes("application/json")]
 		public async Task<ActionResult<BookOutDto>> CreateAsync([FromBody] CreateBookDto createDto)
 		{
-			var createbookDto = _mapper.Map<Book>(createDto);
-			var entity = (await dbContext.Set<Book>().AddAsync(createbookDto)).Entity;
+			var book = _mapper.Map<Book>(createDto);
+			var entity = (await dbContext.Set<Book>().AddAsync(book)).Entity;
 			await dbContext.SaveChangesAsync();
 			var outDtos = _mapper.Map<List<BookOutDto>>(entity);
 			return Created(Request.Path, outDtos);
@@ -58,8 +58,8 @@ namespace library_db_book.Controllers
 				[FromRoute] int id,
 				[FromBody] UpdateBookDto updateDto)
 		{
-			var updatebookDto = _mapper.Map<Book>(updateDto);
-			var entity = dbContext.Set<Book>().Update(updatebookDto).Entity;
+			var book = _mapper.Map<Book>(updateDto);
+			var entity = dbContext.Set<Book>().Update(book).Entity;
 			await dbContext.SaveChangesAsync();
 			var outDto = _mapper.Map<List<BookOutDto>>(entity);
 			return Ok(outDto);

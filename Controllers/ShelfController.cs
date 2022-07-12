@@ -38,10 +38,10 @@ namespace library_db_book.Controllers
         // --------------------------------------------------------CreateAsync--------------------------------------------------------------------------- //
         [HttpPost("[action]")]
         [Consumes("application/json")]
-        public async Task<ActionResult<ShelfOutDto>> CreateAsync([FromBody] CreateShelfDto createDto)
+        public async Task<ActionResult<ShelfOutDto>>CreateAsync([FromBody] CreateShelfDto createDto)
         {
-            var createshelfDto = _mapper.Map<Shelf>(createDto);
-            var entity = (await dbContext.Set<Shelf>().AddAsync(createshelfDto)).Entity;
+            var shelf = _mapper.Map<Shelf>(createDto);
+            var entity = (await dbContext.Set<Shelf>().AddAsync(shelf)).Entity;
             await dbContext.SaveChangesAsync();
             var outDtos = _mapper.Map<List<ShelfOutDto>>(entity);
             return Created(Request.Path, outDtos);
@@ -49,12 +49,12 @@ namespace library_db_book.Controllers
         // --------------------------------------------------------UpdateAsync--------------------------------------------------------------------------- //
         [HttpPut("[action]/{id}")]
         [Consumes("application/json")]
-        public async Task<ActionResult<ShelfOutDto>> UpdateAsync(
+        public async Task<ActionResult<ShelfOutDto>>UpdateAsync(
                 [FromRoute] int id,
                 [FromBody] UpdateShelfDto updateDto)
         {
-            var updateshelfDto = _mapper.Map<Shelf>(updateDto);
-            var entity = dbContext.Set<Shelf>().Update(updateshelfDto).Entity;
+            var shelf = _mapper.Map<Shelf>(updateDto);
+            var entity = dbContext.Set<Shelf>().Update(shelf).Entity;
             await dbContext.SaveChangesAsync();
             var outDto = _mapper.Map<List<ShelfOutDto>>(entity);
             return Ok(outDto);

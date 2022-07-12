@@ -8,5 +8,6 @@
         public int[] CategoryIds { get; set; }
         public int[] MarkIds { get; set; }
         public int ShelfId { get; set; }
+        public string Name { get; set; }
     }
 }
