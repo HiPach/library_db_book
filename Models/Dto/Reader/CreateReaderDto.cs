@@ -2,11 +2,10 @@
 { 
     public class CreateReaderDto
     {
-        public string Author { get; set; }
-        public string Photo { get; set; }
-        public int ReaderId { get; set; }
-        public int[] CategoryIds { get; set; }
-        public int[] MarkIds { get; set; }
-        public int ShelfId { get; set; }
+        public DateTime DateVisit { get; set; }
+        public string FirstName { get; set; }
+        public string MiddleName { get; set; }
+        public string LastName { get; set; }
+        public DateTime DateRegistration { get; set; }
     }
 }

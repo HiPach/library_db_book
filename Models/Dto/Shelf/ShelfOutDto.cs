@@ -2,5 +2,6 @@
 {
     public class ShelfOutDto
     {
+        public string Name { get; set; }
     }
 }

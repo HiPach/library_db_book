@@ -2,5 +2,6 @@
 {
     public class MarkOutDto
     {
+        public string Name { get; set; }
     }
 }
