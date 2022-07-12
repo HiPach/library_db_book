@@ -2,11 +2,12 @@
 
 namespace library_db_book.Models.Class_Book
 {
+    [Table("Book_Mark_Relation")]
     public class BookMarkRelation
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        virtual public int Id { get; set; }
-        virtual public int BookId { get; set; }
-        virtual public int MarkId { get; set; }
+        public virtual int Id { get; set; }
+        public virtual int BookId { get; set; }
+        public virtual int MarkId { get; set; }
     }
 }

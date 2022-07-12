@@ -2,15 +2,16 @@
 
 namespace library_db_book.Models.Class_Book
 {
+    [Table("Reader")]
     public class Reader
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        virtual public int Id { get; set; }
-        virtual public DateTime DateVisit { get; set; }
-        virtual public string FirstName { get; set; }
-        virtual public string MiddleName { get; set; }
-        virtual public string LastName { get; set; }
-        virtual public IList<Book> Books { get; set; }
-        virtual public DateTime DateRegistration { get; set; }
+        public virtual int Id { get; set; }
+        public virtual DateTime DateVisit { get; set; }
+        public virtual string FirstName { get; set; }
+        public virtual string MiddleName { get; set; }
+        public virtual string LastName { get; set; }
+        public virtual IList<Book> Books { get; set; }
+        public virtual DateTime DateRegistration { get; set; }
     }
 }

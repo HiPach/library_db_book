@@ -2,11 +2,12 @@
 
 namespace library_db_book.Models.Class_Book
 {
+    [Table("Shelf")]
     public class Shelf
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        virtual public int Id { get; set; }
-        virtual public string Name { get; set; }
-        virtual public IList<Book> Books { get; set; }
+        public virtual int Id { get; set; }
+        public virtual string Name { get; set; }
+        public virtual IList<Book> Books { get; set; }
     }
 }

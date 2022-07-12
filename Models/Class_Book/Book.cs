@@ -6,13 +6,16 @@ namespace library_db_book.Models.Class_Book
     public class Book
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        virtual public int Id { get; set; }
-        virtual public string Author { get; set; }
-        virtual public string Photo { get; set; }
-        virtual public Reader Reader { get; set; }
-        virtual public Shelf Shelf { get; set; }
-        virtual public IList<BookMarkRelation> BookMark { get; set; }
-        virtual public IList<BookCategoryRelation> BookCategory { get; set; }
+        public virtual int Id { get; set; }
+        public virtual string Author { get; set; }
+        public virtual string Photo { get; set; }
+        public virtual int ReaderId { get; set; }
+        public virtual int ShelfId { get; set; }
+        public virtual Reader Reader { get; set; }
+        public virtual Shelf Shelf { get; set; }
+        public virtual IList<BookMarkRelation> BookMark { get; set; }
+        public virtual IList<BookCategoryRelation> BookCategory { get; set; }
+        public virtual string Name { get; set; }
     }
 }
 
