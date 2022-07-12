@@ -1,6 +1,6 @@
-﻿namespace library_db_book.Models.Dto.Book
+﻿namespace library_db_book.Models.Dto.Category
 {
-    public class UpdateShelfDto
+    public class UpdateCategoryDto
     {
         public string Author { get; set; }
         public string Photo { get; set; }

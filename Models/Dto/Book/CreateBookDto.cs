@@ -1,6 +1,6 @@
 ﻿namespace library_db_book.Models.Dto.Book
 { 
-    public class CreateBookDto
+    public class CreateShelfDto
     {
         public string Author { get; set; }
         public string Photo { get; set; }
