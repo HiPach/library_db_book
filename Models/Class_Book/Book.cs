@@ -2,7 +2,7 @@
 
 namespace library_db_book.Models.Class_Book
 {
-    [Table("Library_db")]
+    [Table("Table_Library")]
     public class Book
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

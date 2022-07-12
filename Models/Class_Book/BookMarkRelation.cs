@@ -6,7 +6,7 @@ namespace library_db_book.Models.Class_Book
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public int Book_Id { get; set; }
+        public int BookId { get; set; }
         public int MarkId { get; set; }
     }
 }
