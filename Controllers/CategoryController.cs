@@ -1,5 +1,7 @@
-﻿using library_db_book.Models.Class_Book;
+﻿using library_db_book.Models;
+using library_db_book.Models.Class_Book;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 using AutoMapper;
 using MySQLApp;
 using Microsoft.EntityFrameworkCore;
@@ -22,7 +24,7 @@ namespace library_db_book.Controllers
         public async Task<ActionResult<ShelfOutDto>> GetByIdAsync([FromRoute] int id)
         {
             var entity = await dbContext.Set<Shelf>().SingleAsync(x => x.Id.Equals(id));
-            var outDtos = _mapper.Map<List<RShelfOutDto>>(entity);
+            var outDtos = _mapper.Map<List<ShelfOutDto>>(entity);
             return Ok(outDtos);
         }
         // --------------------------------------------------------GetAllAsync--------------------------------------------------------------------------- //

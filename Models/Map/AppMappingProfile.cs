@@ -16,9 +16,21 @@ namespace library_db_book.Controllers.Map
             CreateMap<UpdateBookDto, Book>().ReverseMap();
             CreateMap<BookOutDto, Book>().ReverseMap();
 
-            CreateMap<CreateShelfDto, Book>().ReverseMap();
-            CreateMap<UpdateShelfDto, Book>().ReverseMap();
-            CreateMap<ShelfOutDto, Book>().ReverseMap();
+            CreateMap<CreateShelfDto, Shelf>().ReverseMap();
+            CreateMap<UpdateShelfDto, Shelf>().ReverseMap();
+            CreateMap<ShelfOutDto, Shelf>().ReverseMap();
+
+            CreateMap<CreateCategoryDto, Category>().ReverseMap();
+            CreateMap<UpdateCategoryDto, Category>().ReverseMap();
+            CreateMap<CategoryOutDto, Category>().ReverseMap();
+
+            CreateMap<CreateMarkDto, Mark>().ReverseMap();
+            CreateMap<UpdateMarkDto, Mark>().ReverseMap();
+            CreateMap<MarkOutDto, Mark>().ReverseMap();
+
+            CreateMap<CreateReaderDto, Reader>().ReverseMap();
+            CreateMap<UpdateReaderDto, Reader>().ReverseMap();
+            CreateMap<ReaderOutDto, Reader>().ReverseMap();
         }
     }
 }
