@@ -19,21 +19,12 @@ namespace library_db_book.Controllers
             _logger = logger;
             _mapper = mapper;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
         // --------------------------------------------------------GetByIdAsync-------------------------------------------------------------------------- //
         [HttpGet("{id}")]
         public async Task<ActionResult<ShelfOutDto>> GetByIdAsync([FromRoute] int id)
         {
             var entity = await dbContext.Set<Shelf>().SingleAsync(x => x.Id.Equals(id));
-            var outDtos = _mapper.Map<Shelf>(entity);
+            var outDtos = _mapper.Map<List<ShelfOutDto>>(entity);
             return Ok(outDtos);
         }
         // --------------------------------------------------------GetAllAsync--------------------------------------------------------------------------- //
@@ -52,7 +43,7 @@ namespace library_db_book.Controllers
             var createshelfDto = _mapper.Map<Shelf>(createDto);
             var entity = (await dbContext.Set<Shelf>().AddAsync(createshelfDto)).Entity;
             await dbContext.SaveChangesAsync();
-            var outDtos = _mapper.Map<Shelf>(entity);
+            var outDtos = _mapper.Map<List<ShelfOutDto>>(entity);
             return Created(Request.Path, outDtos);
         }
         // --------------------------------------------------------UpdateAsync--------------------------------------------------------------------------- //
@@ -65,7 +56,7 @@ namespace library_db_book.Controllers
             var updateshelfDto = _mapper.Map<Shelf>(updateDto);
             var entity = dbContext.Set<Shelf>().Update(updateshelfDto).Entity;
             await dbContext.SaveChangesAsync();
-            var outDto = _mapper.Map<Shelf>(entity);
+            var outDto = _mapper.Map<List<ShelfOutDto>>(entity);
             return Ok(outDto);
         }
         // --------------------------------------------------------RemoveAsync----------------------------------------------------------------------------//
@@ -73,7 +64,8 @@ namespace library_db_book.Controllers
         public async Task<ActionResult> RemoveAsync([FromRoute] int id)
         {
             var entity = await dbContext.Set<Shelf>().SingleAsync(x => x.Id.Equals(id));
-            var outDto = dbContext.Set<Shelf>().Remove(entity).Entity;
+            dbContext.Set<Shelf>().Remove(entity);
+            await dbContext.SaveChangesAsync();
             return Ok();
         }
     }

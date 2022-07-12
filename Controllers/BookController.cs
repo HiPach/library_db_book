@@ -39,37 +39,38 @@ namespace library_db_book.Controllers
 		public async Task<ActionResult<BookOutDto>> GetByIdAsync([FromRoute] int id)
 		{
 			var entity = await dbContext.Set<Book>().SingleAsync(x => x.Id.Equals(id));
-			var outDtos = _mapper.Map<Book>(entity);
+			var outDtos = _mapper.Map<List<BookOutDto>>(entity);
 			return Ok(outDtos);
 		}
 		[HttpPost("[action]")]
 		[Consumes("application/json")]
-		public async Task<ActionResult<BookOutDto>> CreateAsync([FromBody] CreateShelfDto createDto)
+		public async Task<ActionResult<BookOutDto>> CreateAsync([FromBody] CreateBookDto createDto)
 		{
 			var createbookDto = _mapper.Map<Book>(createDto);
 			var entity = (await dbContext.Set<Book>().AddAsync(createbookDto)).Entity;
 			await dbContext.SaveChangesAsync();
-			var outDtos = _mapper.Map<Book>(entity);
+			var outDtos = _mapper.Map<List<BookOutDto>>(entity);
 			return Created(Request.Path, outDtos);
 		}
 		[HttpPut("[action]/{id}")]
 		[Consumes("application/json")]
 		public async Task<ActionResult<BookOutDto>> UpdateAsync(
 				[FromRoute] int id,
-				[FromBody] UpdateShelfDto updateDto)
+				[FromBody] UpdateBookDto updateDto)
 		{
 			var updatebookDto = _mapper.Map<Book>(updateDto);
 			var entity = dbContext.Set<Book>().Update(updatebookDto).Entity;
 			await dbContext.SaveChangesAsync();
-			var outDto = _mapper.Map<Book>(entity);
+			var outDto = _mapper.Map<List<BookOutDto>>(entity);
 			return Ok(outDto);
 		}
 		[HttpDelete("[action]/{id}")]
 		public async Task<ActionResult> RemoveAsync([FromRoute] int id)
 		{
 			var entity = await dbContext.Set<Book>().SingleAsync(x => x.Id.Equals(id));
-			var outDto = dbContext.Set<Book>().Remove(entity).Entity;
-		return Ok();
+			dbContext.Set<Book>().Remove(entity);
+			await dbContext.SaveChangesAsync();
+			return Ok();
 		}
 	}
 }

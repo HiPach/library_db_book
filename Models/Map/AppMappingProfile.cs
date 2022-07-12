@@ -8,8 +8,8 @@ namespace library_db_book.Controllers.Map
     {
         public AppMappingProfile()
         {
-            CreateMap<CreateShelfDto, Book>().ReverseMap();
-            CreateMap<UpdateShelfDto, Book>().ReverseMap();
+            CreateMap<CreateBookDto, Book>().ReverseMap();
+            CreateMap<UpdateBookDto, Book>().ReverseMap();
             CreateMap<BookOutDto, Book>().ReverseMap();
         }
     }
