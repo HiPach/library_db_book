@@ -9,7 +9,9 @@ using library_db_book.Models.Dto.Book;
 
 namespace library_db_book.Controllers
 {
-    public class BookController : Controller
+	[ApiController]
+	[Route("api/v1/[controller]s")]
+	public class BookController : Controller
 	{
 		Context dbContext = new Context();
 		private readonly ILogger<BookController> _logger;

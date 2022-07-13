@@ -7,6 +7,8 @@ using library_db_book.Models.Dto.Shelf;
 
 namespace library_db_book.Controllers
 {
+    [ApiController]
+    [Route("api/v1/[controller]s")]
     public class ShelfController : Controller
     {
         Context dbContext = new Context();

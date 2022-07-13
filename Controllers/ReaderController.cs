@@ -7,6 +7,8 @@ using library_db_book.Models.Dto.Reader;
 
 namespace library_db_book.Controllers
 {
+    [ApiController]
+    [Route("api/v1/[controller]s")]
     public class ReaderController : Controller
     {
         Context dbContext = new Context();

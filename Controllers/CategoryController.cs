@@ -9,6 +9,8 @@ using library_db_book.Models.Dto.Category;
 
 namespace library_db_book.Controllers
 {
+    [ApiController]
+    [Route("api/v1/[controller]s")]
     public class CategoryController : Controller
     {
         Context dbContext = new Context();
