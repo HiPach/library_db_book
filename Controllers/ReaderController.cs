@@ -1,7 +1,6 @@
 ﻿using library_db_book.Models.Class_Book;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
-using MySQLApp;
 using Microsoft.EntityFrameworkCore;
 using library_db_book.Models.Dto.Reader;
 
@@ -24,7 +23,7 @@ namespace library_db_book.Controllers
         public async Task<ActionResult<ReaderOutDto>> GetByIdAsync([FromRoute] int id)
         {
             var entity = await dbContext.Set<Reader>().SingleAsync(x => x.Id.Equals(id));
-            var outDtos = _mapper.Map<List<ReaderOutDto>>(entity);
+            var outDtos = _mapper.Map<ReaderOutDto>(entity);
             return Ok(outDtos);
         }
         // --------------------------------------------------------GetAllAsync--------------------------------------------------------------------------- //
@@ -43,7 +42,7 @@ namespace library_db_book.Controllers
             var reader = _mapper.Map<Reader>(createDto);
             var entity = (await dbContext.Set<Reader>().AddAsync(reader)).Entity;
             await dbContext.SaveChangesAsync();
-            var outDtos = _mapper.Map<List<ReaderOutDto>>(entity);
+            var outDtos = _mapper.Map<ReaderOutDto>(entity);
             return Created(Request.Path, outDtos);
         }
         // --------------------------------------------------------UpdateAsync--------------------------------------------------------------------------- //
@@ -56,7 +55,7 @@ namespace library_db_book.Controllers
             var reader = _mapper.Map<Reader>(updateDto);
             var entity = dbContext.Set<Reader>().Update(reader).Entity;
             await dbContext.SaveChangesAsync();
-            var outDto = _mapper.Map<List<ReaderOutDto>>(entity);
+            var outDto = _mapper.Map<ReaderOutDto>(entity);
             return Ok(outDto);
         }
         // --------------------------------------------------------RemoveAsync----------------------------------------------------------------------------//

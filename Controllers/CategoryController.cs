@@ -3,7 +3,6 @@ using library_db_book.Models.Class_Book;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using AutoMapper;
-using MySQLApp;
 using Microsoft.EntityFrameworkCore;
 using library_db_book.Models.Dto.Category;
 
@@ -26,7 +25,7 @@ namespace library_db_book.Controllers
         public async Task<ActionResult<CategoryOutDto>> GetByIdAsync([FromRoute] int id)
         {
             var entity = await dbContext.Set<Category>().SingleAsync(x => x.Id.Equals(id));
-            var outDtos = _mapper.Map<List<CategoryOutDto>>(entity);
+            var outDtos = _mapper.Map<CategoryOutDto>(entity);
             return Ok(outDtos);
         }
         // --------------------------------------------------------GetAllAsync--------------------------------------------------------------------------- //
@@ -45,7 +44,7 @@ namespace library_db_book.Controllers
             var category = _mapper.Map<Category>(createDto);
             var entity = (await dbContext.Set<Category>().AddAsync(category)).Entity;
             await dbContext.SaveChangesAsync();
-            var outDtos = _mapper.Map<List<CategoryOutDto>>(entity);
+            var outDtos = _mapper.Map<CategoryOutDto>(entity);
             return Created(Request.Path, outDtos);
         }
         // --------------------------------------------------------UpdateAsync--------------------------------------------------------------------------- //
@@ -58,7 +57,7 @@ namespace library_db_book.Controllers
             var category = _mapper.Map<Category>(updateDto);
             var entity = dbContext.Set<Category>().Update(category).Entity;
             await dbContext.SaveChangesAsync();
-            var outDto = _mapper.Map<List<CategoryOutDto>>(entity);
+            var outDto = _mapper.Map<CategoryOutDto>(entity);
             return Ok(outDto);
         }
         // --------------------------------------------------------RemoveAsync----------------------------------------------------------------------------//

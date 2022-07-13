@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace library_db_book.Models.Class_Book
 {
@@ -6,6 +7,7 @@ namespace library_db_book.Models.Class_Book
     public class Reader
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
         public virtual int Id { get; set; }
         public virtual DateTime DateVisit { get; set; }
         public virtual string FirstName { get; set; }

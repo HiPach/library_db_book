@@ -3,7 +3,6 @@
     public class CreateMarkDto
     {
         public string Name { get; set; }
-        public IList<MarkOutDto> Marks { get; set; }
 
     }
 }

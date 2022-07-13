@@ -3,7 +3,6 @@ using library_db_book.Models.Class_Book;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using AutoMapper;
-using MySQLApp;
 using Microsoft.EntityFrameworkCore;
 using library_db_book.Models.Dto.Book;
 
@@ -33,7 +32,7 @@ namespace library_db_book.Controllers
 		public async Task<ActionResult<BookOutDto>> GetByIdAsync([FromRoute] int id)
 		{
 			var entity = await dbContext.Set<Book>().SingleAsync(x => x.Id.Equals(id));
-			var outDtos = _mapper.Map<List<BookOutDto>>(entity);
+			var outDtos = _mapper.Map<BookOutDto>(entity);
 			return Ok(outDtos);
 		}
 		[HttpPost("[action]")]
@@ -43,7 +42,7 @@ namespace library_db_book.Controllers
 			var book = _mapper.Map<Book>(createDto);
 			var entity = (await dbContext.Set<Book>().AddAsync(book)).Entity;
 			await dbContext.SaveChangesAsync();
-			var outDtos = _mapper.Map<List<BookOutDto>>(entity);
+			var outDtos = _mapper.Map<BookOutDto>(entity);
 			return Created(Request.Path, outDtos);
 		}
 		[HttpPut("[action]/{id}")]
@@ -55,7 +54,7 @@ namespace library_db_book.Controllers
 			var book = _mapper.Map<Book>(updateDto);
 			var entity = dbContext.Set<Book>().Update(book).Entity;
 			await dbContext.SaveChangesAsync();
-			var outDto = _mapper.Map<List<BookOutDto>>(entity);
+			var outDto = _mapper.Map<BookOutDto>(entity);
 			return Ok(outDto);
 		}
 		[HttpDelete("[action]/{id}")]

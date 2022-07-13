@@ -1,7 +1,7 @@
 ﻿using library_db_book.Models.Class_Book;
 using Microsoft.EntityFrameworkCore;
 
-namespace MySQLApp
+namespace library_db_book
 {
     public class Context : DbContext
     {

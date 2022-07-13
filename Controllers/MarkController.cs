@@ -3,7 +3,6 @@ using library_db_book.Models.Class_Book;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using AutoMapper;
-using MySQLApp;
 using Microsoft.EntityFrameworkCore;
 using library_db_book.Models.Dto.Mark;
 
@@ -26,7 +25,7 @@ namespace library_db_book.Controllers
         public async Task<ActionResult<MarkOutDto>> GetByIdAsync([FromRoute] int id)
         {
             var entity = await dbContext.Set<Mark>().SingleAsync(x => x.Id.Equals(id));
-            var outDtos = _mapper.Map<List<MarkOutDto>>(entity);
+            var outDtos = _mapper.Map<MarkOutDto>(entity);
             return Ok(outDtos);
         }
         // --------------------------------------------------------GetAllAsync--------------------------------------------------------------------------- //
@@ -45,7 +44,7 @@ namespace library_db_book.Controllers
             var mark = _mapper.Map<Mark>(createDto);
             var entity = (await dbContext.Set<Mark>().AddAsync(mark)).Entity;
             await dbContext.SaveChangesAsync();
-            var outDtos = _mapper.Map<List<MarkOutDto>>(entity);
+            var outDtos = _mapper.Map<MarkOutDto>(entity);
             return Created(Request.Path, outDtos);
         }
         // --------------------------------------------------------UpdateAsync--------------------------------------------------------------------------- //
@@ -58,7 +57,7 @@ namespace library_db_book.Controllers
             var mark = _mapper.Map<Mark>(updateDto);
             var entity = dbContext.Set<Mark>().Update(mark).Entity;
             await dbContext.SaveChangesAsync();
-            var outDto = _mapper.Map<List<MarkOutDto>>(entity);
+            var outDto = _mapper.Map<MarkOutDto>(entity);
             return Ok(outDto);
         }
         // --------------------------------------------------------RemoveAsync----------------------------------------------------------------------------//
