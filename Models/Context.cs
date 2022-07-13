@@ -19,7 +19,7 @@ namespace library_db_book
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseMySql(
-                "server=localhost;user=HiPachSQL;password=oKh9FrO8Tp;database=library_db;",
+                "server=localhost;user=HiPachSQL;password=oKh9FrO8Tp;database=library_db_main;",
                 new MySqlServerVersion(new Version(8, 0, 29))
             );
         }

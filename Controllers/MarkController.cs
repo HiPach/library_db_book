@@ -1,7 +1,5 @@
-﻿using library_db_book.Models;
-using library_db_book.Models.Class_Book;
+﻿using library_db_book.Models.Class_Book;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using library_db_book.Models.Dto.Mark;
